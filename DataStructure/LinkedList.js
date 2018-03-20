@@ -156,6 +156,24 @@ Linkedlist.prototype.print = function() {
   }
 }
 
+Linkedlist.prototype.printReverse = function(){
+  console.log("Printing in reverse Order");
+  if(this.head === null){
+    console.log("linkedList is empty");
+  }else{
+    printReverseRecursive(this.head);
+  }
+}
+
+function printReverseRecursive(head){
+  if(head === null){
+    return;
+  }else{
+    printReverseRecursive(head.next);
+    console.log(head.data);
+  }
+}
+
 Linkedlist.prototype.removeDuplicate = function() {
   console.log("Removing Duplicate...");
   let currentNode = this.head;
@@ -215,6 +233,7 @@ linkedlist.add(30);
 linkedlist.add(30);
 linkedlist.add(40);
 linkedlist.print();
-linkedlist.removeDuplicate();
-linkedlist.print();
-linkedlist.kthToLast(10);
+//linkedlist.removeDuplicate();
+//linkedlist.print();
+//linkedlist.kthToLast(10);
+linkedlist.printReverse();
