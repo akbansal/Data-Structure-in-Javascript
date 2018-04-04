@@ -1,47 +1,9 @@
 // var _ = require('underscore');
-
-
-//******************************************************************
-function Node(data) {
-  this.data = data;
-  this.next = null;
-}
-function Queue() {
-  this.head = null;
-  this.tail = null;
-}
-
-Queue.prototype.enqueue = function(data) {
-  var newNode = new Node(data);
-
-  if (this.head === null) {
-    this.head = newNode;
-    this.tail = newNode;
-  } else {
-    this.tail.next = newNode;
-    this.tail = newNode;
-  }
-}
-
-Queue.prototype.dequeue = function() {
-  var newNode;
-  if (this.head !== null) {
-    newNode = this.head.data;
-    this.head = this.head.next;
-  }
-  return newNode;
-}
-
-Queue.prototype.print = function() {
-  var curr = this.head;
-  while (curr) {
-    console.log(curr.data);
-    curr = curr.next;
-  }
-}
+'use strict';
+const Queue = require('../Queue/queue.js');
 
 function NODE(value) {
-  this.visited = false;
+  this.visited = false	;
   this.data = value;
   this.children = [];
 }
@@ -50,26 +12,22 @@ function GRAPH(){
   this.vertices = {};
   this.edges = {};
 }
-
 GRAPH.prototype.addNode = function(n){
   const node = new NODE(n);
-  // console.log(this);
   this.vertices[n] = node;
 };
 
 GRAPH.prototype.addEdge = function(x, y) {
-  // console.log("(x,y) = (" + x + ", "+ y + ")");
   if(this.edges[x]){
     this.edges[x].push(this.vertices[y]);
   }else{
     this.edges[x] = [this.vertices[y]];
   }
-  // console.log(this.edges[x]);
-}
+};
 
 GRAPH.prototype.print = function(){
   console.log(this.edges);
-}
+};
 
 //Depth First Search
 GRAPH.prototype.DFS = function(node){
@@ -86,21 +44,23 @@ GRAPH.prototype.DFS = function(node){
 
 //Breath First Search
 GRAPH.prototype.BFS = function(node) {
-  let q = new Queue();
+	let q = new Queue();
   const self = this;
   let currNode = self.vertices[node];
-  q.enqueue(currNode);
+	q.enqueue(currNode);
   while(!q.isEmpty()){
+  	console.log( "q is - " + q.print());
     let node = q.dequeue();
     node.visited = true;
     console.log("Node = " + node.data);
     self.edges[node.data] && self.edges[node.data].forEach(function(n) {
       if(!n.visited) {
-        q.enqueue(n);
+      	console.log("n = " + n.data);
+				q.enqueue(n);
       }
     });
   }
-}
+};
 
 let g = new GRAPH();
 g.addNode(0);
@@ -119,8 +79,8 @@ g.addEdge(2,1);
 g.addEdge(3,2);
 g.addEdge(3,4);
 
-// g.print();
+//g.print();
 g.BFS(0);
-// g.DFS(0);
+//g.DFS(0);
 
 

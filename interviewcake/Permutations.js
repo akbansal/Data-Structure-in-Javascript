@@ -12,10 +12,10 @@ function getPermutation(string){
 
 		var allPermutationsOfAllCharExceptLast = getPermutation(allCharExceptLast);
 
-		for(index = 0; index < allPermutationsOfAllCharExceptLast.length; index++ ){
+		for(let index = 0; index < allPermutationsOfAllCharExceptLast.length; index++ ){
 			var permutation = allPermutationsOfAllCharExceptLast[index];
 			for(var position = 0; position < permutation.length; position++){
-				permutations.push(permutation.slice(0, position) + lastChar + ermutation.slice(position))
+				permutations.push(permutation.slice(0, position) + lastChar + permutation.slice(position))
 			}
 		}
 	}
