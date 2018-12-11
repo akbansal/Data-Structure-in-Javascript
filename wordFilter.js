@@ -1,3 +1,20 @@
+/*
+You have an unsorted list of characters, duplicates are allowed, i.e.
+
+  chars = ['g', 't', 's', 'a', 'b', 'i', 'e', 'g', 'g']
+
+and a list of words
+
+words = ["abs", "table", "bags", "bib", "big", "egg"]
+
+write a function wordFilter which filters the list of words into only
+ones that can be made from the list of characters.each character in chars
+can only used once
+
+  >>> wordFilter(words, chars)
+  ["abs", "bags", "big", "egg"]
+*/
+
 console.clear();
 
 function createCharCountMap (charArr = []) {
